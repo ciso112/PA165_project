@@ -55,8 +55,10 @@ public class RecordDaoImplTest {
         this.user.setGender(GenderEnum.MALE);
         this.user.setBirthDate(LocalDate.now());
         LoginDetails login = new LoginDetails();
+        user.setHeight(123);
+        user.setWeight(75);
         login.setUsername("rpo");
-        login.setPassword("123");
+        login.setPassword("12312345");
         login.setEmail("rp@see.com");
         this.user.setLoginDetails(login);
     }
@@ -182,7 +184,7 @@ public class RecordDaoImplTest {
     @Transactional
     @Rollback(true)
     public void testFindByTime_LocalDate() {
-      
+
         acDao.create(act);
         usDao.create(user);
         rcDao.create(record);
@@ -191,12 +193,12 @@ public class RecordDaoImplTest {
         LocalDate yesterday = LocalDate.now().minusDays(1);
         LocalDate today = LocalDate.now();
         //any records with date of tomorrow should be in DB
-        Assert.assertTrue(rcDao.findByTime(tomorrow).isEmpty());
-        
-        List<Record> allToday = rcDao.findByTime(today);
+        Assert.assertTrue(rcDao.findByDate(tomorrow).isEmpty());
+
+        List<Record> allToday = rcDao.findByDate(today);
         Assert.assertEquals(1, allToday.size());
         Assert.assertEquals(record, allToday.get(0));
-        
+
         //create another record
         Record newRec = new Record();
         newRec.setAtTime(LocalDateTime.now().minusDays(1));
@@ -204,8 +206,8 @@ public class RecordDaoImplTest {
         newRec.setActivity(this.act);
         newRec.setUser(this.user);
         rcDao.create(newRec);
-        
-        List<Record> allY = rcDao.findByTime(yesterday);
+
+        List<Record> allY = rcDao.findByDate(yesterday);
         Assert.assertEquals(1, allY.size());
         Assert.assertEquals(newRec, allY.get(0));
     }

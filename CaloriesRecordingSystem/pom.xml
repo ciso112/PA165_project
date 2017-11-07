@@ -3,9 +3,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.muni.fi.pa165project</groupId>
   <artifactId>CaloriesRecordingSystem</artifactId>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>CaloriesRecordingSystem</name>
+    <modules>
+        <module>crs-api</module>
+		<module>crs-service</module>
+		<module>crs-persistence</module>
+	</modules>
+    <name>CaloriesRecordingSystem</name>
   <url>http://maven.apache.org</url>
   
   <properties>

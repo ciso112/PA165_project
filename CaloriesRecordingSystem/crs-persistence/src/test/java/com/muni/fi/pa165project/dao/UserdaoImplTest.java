@@ -41,7 +41,7 @@ public class UserdaoImplTest {
 
 		LoginDetails login = new LoginDetails();
 		login.setUsername("ciso112");
-		login.setPassword("abcd");
+		login.setPassword("abcdefgh");
 		login.setEmail("ciso112@protonmail.com");
 		this.user.setLoginDetails(login);
 		userDao.create(user);
@@ -110,12 +110,14 @@ public class UserdaoImplTest {
 		Assert.assertTrue("Users have incorrect number of results", users.size() == 1);
 
 		User usr = new User();
+
 		usr.setBirthDate(LocalDate.now());
 		usr.setName("Vlado");
-
+		usr.setWeight(75);
+		usr.setHeight(125);
 		LoginDetails login = new LoginDetails();
 		login.setUsername("eavf");
-		login.setPassword("abcd");
+		login.setPassword("abcdefgh");
 		login.setEmail("vlado@protonmail.com");
 		usr.setLoginDetails(login);
 		userDao.create(usr);
