@@ -3,16 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.muni.fi.pa165project.facade;
-
-import com.muni.fi.pa165project.dto.ActivityDTO;
+package com.muni.fi.pa165project.enums;
 
 /**
  *
  * @author Radoslav Karlik
  */
-public interface ActivityFacade {
-	
-	public void CreateActivity(ActivityDTO activityDTO);
-	
+public enum Category {
+	CYCLING,
+    RUNNING,
+    WALKING,
+	SWIMMING,
+	AEROBICS,
+	DANCING,
+	EXERCISE,
+	WORK,
+	HOBBY
 }

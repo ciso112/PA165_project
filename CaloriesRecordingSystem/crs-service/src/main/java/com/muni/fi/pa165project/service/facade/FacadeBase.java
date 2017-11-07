@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.muni.fi.pa165project.service;
+package com.muni.fi.pa165project.service.facade;
 
-import com.muni.fi.pa165project.dao.ActivityDao;
-import com.muni.fi.pa165project.entity.Activity;
-import javax.inject.Inject;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +14,13 @@ import org.springframework.stereotype.Service;
  * @author Radoslav Karlik
  */
 @Service
-public class ActivityServiceImpl implements ActivityService {
-
-	@Autowired
-	private ActivityDao activityDao;
+public abstract class FacadeBase {
 	
-	@Override
-	public void create(Activity activity) {
-		this.activityDao.create(activity);
+	@Autowired
+	protected DozerBeanMapper mapper;
+	
+	protected <T> T map(Object source, Class<T> destinationClass) {
+		return this.mapper.map(source, destinationClass);
 	}
 	
 }
