@@ -2,14 +2,87 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	
     <parent>
-        <artifactId>CaloriesRecordingSystem</artifactId>
-        <groupId>com.muni.fi.pa165project</groupId>
+		<groupId>com.muni.fi.pa165project</groupId>
+        <artifactId>crs-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
     <artifactId>crs-persistence</artifactId>
+	<packaging>jar</packaging>
+	<name>Persistence Layer and Beans Validation</name>
+	
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		  </dependency>
+		  <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+		  <dependency>
+			  <groupId>log4j</groupId>
+			  <artifactId>log4j</artifactId>
+		  </dependency>
+		  <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+		  <dependency>
+			  <groupId>org.slf4j</groupId>
+			  <artifactId>slf4j-log4j12</artifactId>
+			  <scope>test</scope>
+		  </dependency>
 
 
+		  <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		  <dependency>
+			  <groupId>org.hibernate</groupId>
+			  <artifactId>hibernate-core</artifactId>
+		  </dependency>
+
+		  <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		  <dependency>
+			  <groupId>org.springframework</groupId>
+			  <artifactId>spring-context</artifactId>
+		  </dependency>
+		  <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+		  <dependency>
+			  <groupId>org.springframework</groupId>
+			  <artifactId>spring-test</artifactId>
+			  <scope>test</scope>
+		  </dependency>
+
+		  <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+		  <dependency>
+			  <groupId>org.springframework</groupId>
+			  <artifactId>spring-orm</artifactId>
+		  </dependency>
+		  <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+		  <dependency>
+			  <groupId>org.springframework.data</groupId>
+			  <artifactId>spring-data-jpa</artifactId>
+		  </dependency>
+
+
+		  <!-- For embedded usage -->
+		  <dependency>
+			  <groupId>org.apache.derby</groupId>
+			  <artifactId>derby</artifactId>
+		  </dependency>
+
+		  <dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.validation</groupId>
+					<artifactId>validation-api</artifactId>
+				</exclusion>
+			</exclusions>
+		  </dependency>
+		  <dependency>
+			  <groupId>javax.validation</groupId>
+			  <artifactId>validation-api</artifactId>
+		  </dependency>
+	  </dependencies>
 </project>

@@ -1,104 +1,129 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
   <modelVersion>4.0.0</modelVersion>
+  
   <groupId>com.muni.fi.pa165project</groupId>
-  <artifactId>CaloriesRecordingSystem</artifactId>
+  <artifactId>crs-parent</artifactId>
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>crs-api</module>
-		<module>crs-service</module>
-		<module>crs-persistence</module>
-	</modules>
-    <name>CaloriesRecordingSystem</name>
-  <url>http://maven.apache.org</url>
+  <name>CaloriesRecordingSystem</name>
   
   <properties>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	<maven.compiler.source>1.8</maven.compiler.source>
 	<maven.compiler.target>1.8</maven.compiler.target>
   </properties>
   
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
-	<!-- https://mvnrepository.com/artifact/log4j/log4j -->
-	<dependency>
-		<groupId>log4j</groupId>
-		<artifactId>log4j</artifactId>
-		<version>1.2.17</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
-	<dependency>
-		<groupId>org.slf4j</groupId>
-		<artifactId>slf4j-log4j12</artifactId>
-		<version>1.7.25</version>
-		<scope>test</scope>
-	</dependency>
+  <dependencyManagement>
+	  <dependencies>
+		  <dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		  </dependency>
+		  <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+		  <dependency>
+			  <groupId>log4j</groupId>
+			  <artifactId>log4j</artifactId>
+			  <version>1.2.17</version>
+		  </dependency>
+		  <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+		  <dependency>
+			  <groupId>org.slf4j</groupId>
+			  <artifactId>slf4j-log4j12</artifactId>
+			  <version>1.7.25</version>
+			  <scope>test</scope>
+		  </dependency>
 
 
-	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-	<dependency>
-		<groupId>org.hibernate</groupId>
-		<artifactId>hibernate-core</artifactId>
-		<version>5.2.11.Final</version>
-	</dependency>
+		  <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		  <dependency>
+			  <groupId>org.hibernate</groupId>
+			  <artifactId>hibernate-core</artifactId>
+			  <version>5.2.11.Final</version>
+		  </dependency>
 
-	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-context</artifactId>
-		<version>5.0.0.RELEASE</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-test</artifactId>
-		<version>5.0.1.RELEASE</version>
-		<scope>test</scope>
-	</dependency>
+		  <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		  <dependency>
+			  <groupId>org.springframework</groupId>
+			  <artifactId>spring-context</artifactId>
+			  <version>5.0.0.RELEASE</version>
+		  </dependency>
+		  <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+		  <dependency>
+			  <groupId>org.springframework</groupId>
+			  <artifactId>spring-test</artifactId>
+			  <version>5.0.1.RELEASE</version>
+			  <scope>test</scope>
+		  </dependency>
 
-	<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-orm</artifactId>
-		<version>5.0.1.RELEASE</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
-	<dependency>
-		<groupId>org.springframework.data</groupId>
-		<artifactId>spring-data-jpa</artifactId>
-		<version>2.0.0.RELEASE</version>
-	</dependency>
+		  <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+		  <dependency>
+			  <groupId>org.springframework</groupId>
+			  <artifactId>spring-orm</artifactId>
+			  <version>5.0.1.RELEASE</version>
+		  </dependency>
+		  <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+		  <dependency>
+			  <groupId>org.springframework.data</groupId>
+			  <artifactId>spring-data-jpa</artifactId>
+			  <version>2.0.0.RELEASE</version>
+		  </dependency>
 
 
-	<!-- For embedded usage -->
-	<dependency>
-		<groupId>org.apache.derby</groupId>
-		<artifactId>derby</artifactId>
-		<version>10.10.2.0</version>
-	</dependency>
-	
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <version>5.0.3.Final</version>
-      <exclusions>
-          <exclusion>
-              <groupId>javax.validation</groupId>
-              <artifactId>validation-api</artifactId>
-          </exclusion>
-      </exclusions>
-	</dependency>
-	<dependency>
-		<groupId>javax.validation</groupId>
-		<artifactId>validation-api</artifactId>
-		<version>1.1.0.Final</version>
-	</dependency>
-  </dependencies>
+		  <!-- For embedded usage -->
+		  <dependency>
+			  <groupId>org.apache.derby</groupId>
+			  <artifactId>derby</artifactId>
+			  <version>10.10.2.0</version>
+		  </dependency>
+
+		  <dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.0.3.Final</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.validation</groupId>
+					<artifactId>validation-api</artifactId>
+				</exclusion>
+			</exclusions>
+		  </dependency>
+		  <dependency>
+			  <groupId>javax.validation</groupId>
+			  <artifactId>validation-api</artifactId>
+			  <version>1.1.0.Final</version>
+		  </dependency>
+		  
+		  <dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		  </dependency>
+	  </dependencies>
+  </dependencyManagement>
+  
+  <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <compilerArgument>-Xlint:unchecked,deprecation</compilerArgument>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+  
+	<modules>
+        <module>crs-api</module>
+		<module>crs-service</module>
+		<module>crs-persistence</module>
+	</modules>
   
 </project>
