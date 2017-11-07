@@ -26,3 +26,6 @@ hs_err_pid*
 .idea
 *.iml
 /CaloriesRecordingSystem/nbproject/
+/CaloriesRecordingSystem/crs-persistence/target/
+/CaloriesRecordingSystem/crs-service/target/
+/CaloriesRecordingSystem/crs-api/target/
