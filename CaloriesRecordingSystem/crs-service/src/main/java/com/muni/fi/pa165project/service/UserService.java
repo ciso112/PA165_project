@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.muni.fi.pa165project.facade;
+package com.muni.fi.pa165project.service;
 
-import com.muni.fi.pa165project.dto.RecordDTO;
+import com.muni.fi.pa165project.entity.User;
 
 /**
  *
  * @author Radoslav Karlik
  */
-public interface TrackingFacade {
+public interface UserService {
 	
-	void createRecord(RecordDTO recordDto);
+	User findById(long userId);
 	
 }

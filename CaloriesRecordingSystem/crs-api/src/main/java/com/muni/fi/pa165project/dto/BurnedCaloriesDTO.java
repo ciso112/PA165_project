@@ -5,6 +5,8 @@
  */
 package com.muni.fi.pa165project.dto;
 
+import java.util.Objects;
+
 /**
  *
  * @author Radoslav Karlik
@@ -12,6 +14,8 @@ package com.muni.fi.pa165project.dto;
 public class BurnedCaloriesDTO {
 	
 	private Long id;
+	
+	private long activityId;
 	
     private int upperWeightBoundary;
  
@@ -25,6 +29,14 @@ public class BurnedCaloriesDTO {
 		this.id = id;
 	}
 
+	public long getActivityId() {
+		return activityId;
+	}
+
+	public void setActivityId(long activityId) {
+		this.activityId = activityId;
+	}
+	
 	public int getUpperWeightBoundary() {
 		return upperWeightBoundary;
 	}
@@ -43,12 +55,13 @@ public class BurnedCaloriesDTO {
 
 	@Override
 	public int hashCode() {
-		int hash = 5;
-		hash = 67 * hash + this.upperWeightBoundary;
-		hash = 67 * hash + this.amount;
+		int hash = 7;
+		hash = 97 * hash + Objects.hashCode(this.activityId);
+		hash = 97 * hash + this.upperWeightBoundary;
+		hash = 97 * hash + this.amount;
 		return hash;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -61,6 +74,9 @@ public class BurnedCaloriesDTO {
 			return false;
 		}
 		final BurnedCaloriesDTO other = (BurnedCaloriesDTO) obj;
+		if (this.activityId != other.getActivityId()) {
+			return false;
+		}
 		if (this.upperWeightBoundary != other.getUpperWeightBoundary()) {
 			return false;
 		}

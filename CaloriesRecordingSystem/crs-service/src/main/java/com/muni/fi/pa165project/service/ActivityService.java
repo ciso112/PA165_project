@@ -15,4 +15,8 @@ public interface ActivityService {
 	
 	void create(Activity activity);
 	
+	Activity findById(long id);
+	
+	void update(Activity activity);
+	
 }

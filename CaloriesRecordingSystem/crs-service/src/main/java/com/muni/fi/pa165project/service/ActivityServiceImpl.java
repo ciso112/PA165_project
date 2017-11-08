@@ -25,5 +25,15 @@ public class ActivityServiceImpl implements ActivityService {
 	public void create(Activity activity) {
 		this.activityDao.create(activity);
 	}
+
+	@Override
+	public Activity findById(long id) {
+		return this.activityDao.findById(id);
+	}
+
+	@Override
+	public void update(Activity activity) {
+		this.activityDao.update(activity);
+	}
 	
 }

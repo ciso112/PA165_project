@@ -6,6 +6,7 @@
 package com.muni.fi.pa165project.facade;
 
 import com.muni.fi.pa165project.dto.ActivityDTO;
+import com.muni.fi.pa165project.dto.BurnedCaloriesDTO;
 
 /**
  *
@@ -14,5 +15,7 @@ import com.muni.fi.pa165project.dto.ActivityDTO;
 public interface ActivityFacade {
 	
 	public void CreateActivity(ActivityDTO activityDTO);
+	
+	public void AddBurnedCaloriesToActivity(BurnedCaloriesDTO burnedCaloriesDTO);
 	
 }

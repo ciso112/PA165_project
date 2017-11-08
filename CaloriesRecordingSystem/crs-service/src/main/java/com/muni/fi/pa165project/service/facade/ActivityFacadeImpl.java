@@ -8,14 +8,11 @@ package com.muni.fi.pa165project.service.facade;
 import com.muni.fi.pa165project.dto.ActivityDTO;
 import com.muni.fi.pa165project.dto.BurnedCaloriesDTO;
 import com.muni.fi.pa165project.entity.Activity;
-import com.muni.fi.pa165project.enums.Category;
+import com.muni.fi.pa165project.entity.BurnedCalories;
 import com.muni.fi.pa165project.facade.ActivityFacade;
 import com.muni.fi.pa165project.service.ActivityService;
-import com.muni.fi.pa165project.service.config.Config;
 import javax.transaction.Transactional;
-import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
 /**
  *
@@ -32,6 +29,17 @@ public class ActivityFacadeImpl extends FacadeBase implements ActivityFacade {
 	public void CreateActivity(ActivityDTO activityDTO) {
 		Activity activity = super.map(activityDTO, Activity.class);
 		this.activityService.create(activity);
+	}
+
+	@Override
+	public void AddBurnedCaloriesToActivity(BurnedCaloriesDTO burnedCaloriesDTO) {
+		BurnedCalories bc = super.map(burnedCaloriesDTO, BurnedCalories.class);
+		
+		long activityId = burnedCaloriesDTO.getActivityId();
+		
+		Activity activity = this.activityService.findById(activityId);
+		activity.getBurnedCalories().add(bc);
+		this.activityService.update(activity);
 	}
 	
 }
