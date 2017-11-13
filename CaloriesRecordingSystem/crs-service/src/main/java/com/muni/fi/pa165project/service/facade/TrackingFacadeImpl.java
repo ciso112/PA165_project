@@ -13,6 +13,7 @@ import com.muni.fi.pa165project.facade.TrackingFacade;
 import com.muni.fi.pa165project.service.ActivityService;
 import com.muni.fi.pa165project.service.RecordService;
 import com.muni.fi.pa165project.service.UserService;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,13 @@ public class TrackingFacadeImpl extends FacadeBase implements TrackingFacade {
 		record.setUser(user);
 		
 		this.recordService.createRecord(record);
+	}
+
+	@Override
+	public List<RecordDTO> getAllRecords(long userId) {
+		List<Record> recordEntites = this.recordService.getAllRecordsOfUser(userId);
+		List<RecordDTO> records = super.mapToList(recordEntites, RecordDTO.class);
+		return records;
 	}
 	
 }

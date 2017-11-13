@@ -6,6 +6,7 @@
 package com.muni.fi.pa165project.facade;
 
 import com.muni.fi.pa165project.dto.RecordDTO;
+import java.util.List;
 
 /**
  *
@@ -14,5 +15,7 @@ import com.muni.fi.pa165project.dto.RecordDTO;
 public interface TrackingFacade {
 	
 	void createRecord(RecordDTO recordDto);
+	
+	List<RecordDTO> getAllRecords(long userId);
 	
 }
