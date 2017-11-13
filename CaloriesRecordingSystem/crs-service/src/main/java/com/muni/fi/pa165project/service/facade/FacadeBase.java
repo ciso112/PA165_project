@@ -5,7 +5,9 @@
  */
 package com.muni.fi.pa165project.service.facade;
 
-import org.dozer.DozerBeanMapper;
+import com.muni.fi.pa165project.service.utils.DozerHelper;
+import java.util.Collection;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,14 @@ import org.springframework.stereotype.Service;
 public abstract class FacadeBase {
 	
 	@Autowired
-	protected DozerBeanMapper mapper;
+	private DozerHelper dozerHelper;
 	
 	protected <T> T map(Object source, Class<T> destinationClass) {
-		return this.mapper.map(source, destinationClass);
+		return this.dozerHelper.map(source, destinationClass);
+	}
+	
+	protected <T, Z> List<T> mapToList(Collection<Z> source, Class<T> destinationClass) {
+		return this.dozerHelper.mapToList(source, destinationClass);
 	}
 	
 }
