@@ -14,8 +14,8 @@ import com.muni.fi.pa165project.dto.BurnedCaloriesDTO;
  */
 public interface ActivityFacade {
 	
-	public void CreateActivity(ActivityDTO activityDTO);
+	public void createActivity(ActivityDTO activityDTO);
 	
-	public void AddBurnedCaloriesToActivity(BurnedCaloriesDTO burnedCaloriesDTO);
+	public void addBurnedCaloriesToActivity(BurnedCaloriesDTO burnedCaloriesDTO);
 	
 }

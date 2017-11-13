@@ -26,13 +26,13 @@ public class ActivityFacadeImpl extends FacadeBase implements ActivityFacade {
 	private ActivityService activityService;
 	
 	@Override
-	public void CreateActivity(ActivityDTO activityDTO) {
+	public void createActivity(ActivityDTO activityDTO) {
 		Activity activity = super.map(activityDTO, Activity.class);
 		this.activityService.create(activity);
 	}
 
 	@Override
-	public void AddBurnedCaloriesToActivity(BurnedCaloriesDTO burnedCaloriesDTO) {
+	public void addBurnedCaloriesToActivity(BurnedCaloriesDTO burnedCaloriesDTO) {
 		BurnedCalories bc = super.map(burnedCaloriesDTO, BurnedCalories.class);
 		
 		long activityId = burnedCaloriesDTO.getActivityId();
