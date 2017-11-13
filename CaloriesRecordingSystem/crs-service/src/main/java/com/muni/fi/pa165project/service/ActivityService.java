@@ -6,6 +6,7 @@
 package com.muni.fi.pa165project.service;
 
 import com.muni.fi.pa165project.entity.Activity;
+import java.util.List;
 
 /**
  *
@@ -18,5 +19,6 @@ public interface ActivityService {
 	Activity findById(long id);
 	
 	void update(Activity activity);
-	
+
+	List<Activity> getAllActivities();
 }

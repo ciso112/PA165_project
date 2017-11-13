@@ -7,6 +7,7 @@ package com.muni.fi.pa165project.facade;
 
 import com.muni.fi.pa165project.dto.ActivityDTO;
 import com.muni.fi.pa165project.dto.BurnedCaloriesDTO;
+import java.util.List;
 
 /**
  *
@@ -17,5 +18,7 @@ public interface ActivityFacade {
 	public void createActivity(ActivityDTO activityDTO);
 	
 	public void addBurnedCaloriesToActivity(BurnedCaloriesDTO burnedCaloriesDTO);
+	
+	public List<ActivityDTO> getAllActivities();
 	
 }
