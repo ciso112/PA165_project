@@ -15,10 +15,14 @@ import java.util.List;
  */
 public interface ActivityFacade {
 	
-	public void createActivity(ActivityDTO activityDTO);
+	void createActivity(ActivityDTO activityDTO);
 	
-	public void addBurnedCaloriesToActivity(BurnedCaloriesDTO burnedCaloriesDTO);
+	void addBurnedCaloriesToActivity(BurnedCaloriesDTO burnedCaloriesDTO);
 	
-	public List<ActivityDTO> getAllActivities();
+	void removeBurnedCaloriesFromActivity(BurnedCaloriesDTO burnedCaloriesDTO);
+	
+	void removeActivity(long id);
+	
+	List<ActivityDTO> getAllActivities();
 	
 }

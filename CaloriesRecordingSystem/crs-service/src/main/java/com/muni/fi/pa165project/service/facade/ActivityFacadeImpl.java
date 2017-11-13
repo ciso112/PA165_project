@@ -12,6 +12,7 @@ import com.muni.fi.pa165project.entity.BurnedCalories;
 import com.muni.fi.pa165project.facade.ActivityFacade;
 import com.muni.fi.pa165project.service.ActivityService;
 import java.util.List;
+import java.util.Objects;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,18 @@ public class ActivityFacadeImpl extends FacadeBase implements ActivityFacade {
 		List<Activity> activities = this.activityService.getAllActivities();
 		List<ActivityDTO> activitiesDto = super.mapToList(activities, ActivityDTO.class);
 		return activitiesDto;
+	}
+
+	@Override
+	public void removeBurnedCaloriesFromActivity(BurnedCaloriesDTO burnedCaloriesDTO) {
+		Activity activity = this.activityService.findById(burnedCaloriesDTO.getActivityId());
+		activity.getBurnedCalories().removeIf(bc -> Objects.equals(bc.getId(), burnedCaloriesDTO.getId()));
+		this.activityService.update(activity);
+	}
+
+	@Override
+	public void removeActivity(long id) {
+		this.activityService.remove(id);
 	}
 	
 }

@@ -41,5 +41,11 @@ public class ActivityServiceImpl implements ActivityService {
 	public List<Activity> getAllActivities() {
 		return this.activityDao.findAll();
 	}
+
+	@Override
+	public void remove(long id) {
+		Activity activity = this.findById(id);
+		this.activityDao.delete(activity);
+	}
 	
 }

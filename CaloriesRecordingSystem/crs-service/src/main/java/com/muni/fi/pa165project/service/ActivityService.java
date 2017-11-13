@@ -21,4 +21,6 @@ public interface ActivityService {
 	void update(Activity activity);
 
 	List<Activity> getAllActivities();
+	
+	void remove(long id);
 }
