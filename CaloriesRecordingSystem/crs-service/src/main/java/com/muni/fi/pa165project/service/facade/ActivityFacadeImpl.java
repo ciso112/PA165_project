@@ -6,11 +6,14 @@
 package com.muni.fi.pa165project.service.facade;
 
 import com.muni.fi.pa165project.dto.ActivityDTO;
+import com.muni.fi.pa165project.dto.filters.ActivityFilterDTO;
 import com.muni.fi.pa165project.dto.BurnedCaloriesDTO;
 import com.muni.fi.pa165project.entity.Activity;
 import com.muni.fi.pa165project.entity.BurnedCalories;
+import com.muni.fi.pa165project.enums.Category;
 import com.muni.fi.pa165project.facade.ActivityFacade;
 import com.muni.fi.pa165project.service.ActivityService;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import javax.transaction.Transactional;
@@ -61,6 +64,14 @@ public class ActivityFacadeImpl extends FacadeBase implements ActivityFacade {
 	@Override
 	public void removeActivity(long id) {
 		this.activityService.remove(id);
+	}
+
+	@Override
+	public List<ActivityDTO> getActivities(ActivityFilterDTO activityFilter) {
+		Collection<Category> categories = activityFilter.getCategories();
+		List<Activity> filteredActivities = this.activityService.getFilteredActivities(categories);
+		List<ActivityDTO> activitiesDTO = super.mapToList(categories, ActivityDTO.class);
+		return activitiesDTO;
 	}
 	
 }

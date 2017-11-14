@@ -2,6 +2,7 @@ package com.muni.fi.pa165project.dao;
 
 import com.muni.fi.pa165project.entity.Activity;
 import com.muni.fi.pa165project.enums.Category;
+import java.util.Collection;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -73,4 +74,11 @@ public class ActivityDaoImpl implements ActivityDao{
         
         return query.getResultList();
     }
+	
+	@Override
+	public List<Activity> findByCategories(Collection<Category> categories) {
+		return this.em.createQuery("SELECT a FROM Activity a where a.category IN :categories", Activity.class)
+				.setParameter("categories", categories)
+				.getResultList();
+	}
 }

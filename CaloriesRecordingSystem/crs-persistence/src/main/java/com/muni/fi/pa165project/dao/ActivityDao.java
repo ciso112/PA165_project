@@ -7,6 +7,7 @@ package com.muni.fi.pa165project.dao;
 
 import com.muni.fi.pa165project.entity.Activity;
 import com.muni.fi.pa165project.enums.Category;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -59,4 +60,10 @@ public interface ActivityDao {
 	 */
 	List<Activity> findByCategory(Category category);
 	
+	/**
+	 * Finds all activities from given categories
+	 * @param categories
+	 * @return 
+	 */
+	List<Activity> findByCategories(Collection<Category> categories);
 }

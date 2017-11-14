@@ -6,6 +6,7 @@
 package com.muni.fi.pa165project.facade;
 
 import com.muni.fi.pa165project.dto.ActivityDTO;
+import com.muni.fi.pa165project.dto.filters.ActivityFilterDTO;
 import com.muni.fi.pa165project.dto.BurnedCaloriesDTO;
 import java.util.List;
 
@@ -24,5 +25,7 @@ public interface ActivityFacade {
 	void removeActivity(long id);
 	
 	List<ActivityDTO> getAllActivities();
+	
+	List<ActivityDTO> getActivities(ActivityFilterDTO activityFilter);
 	
 }

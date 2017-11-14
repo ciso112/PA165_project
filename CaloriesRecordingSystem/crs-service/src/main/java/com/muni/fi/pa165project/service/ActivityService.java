@@ -6,6 +6,8 @@
 package com.muni.fi.pa165project.service;
 
 import com.muni.fi.pa165project.entity.Activity;
+import com.muni.fi.pa165project.enums.Category;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -23,4 +25,7 @@ public interface ActivityService {
 	List<Activity> getAllActivities();
 	
 	void remove(long id);
+	
+	List<Activity> getFilteredActivities(Collection<Category> categories);
+	
 }

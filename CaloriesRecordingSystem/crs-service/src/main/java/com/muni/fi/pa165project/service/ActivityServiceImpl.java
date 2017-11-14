@@ -7,6 +7,8 @@ package com.muni.fi.pa165project.service;
 
 import com.muni.fi.pa165project.dao.ActivityDao;
 import com.muni.fi.pa165project.entity.Activity;
+import com.muni.fi.pa165project.enums.Category;
+import java.util.Collection;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,11 @@ public class ActivityServiceImpl implements ActivityService {
 	public void remove(long id) {
 		Activity activity = this.findById(id);
 		this.activityDao.delete(activity);
+	}
+
+	@Override
+	public List<Activity> getFilteredActivities(Collection<Category> categories) {
+		return this.activityDao.findByCategories(categories);
 	}
 	
 }
