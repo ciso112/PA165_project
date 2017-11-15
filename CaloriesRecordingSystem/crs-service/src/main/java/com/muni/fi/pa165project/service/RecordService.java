@@ -1,21 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.muni.fi.pa165project.service;
 
 import com.muni.fi.pa165project.entity.Record;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  *
- * @author Radoslav Karlik
+ * @author Radoslav Karlik, Radim Podola
  */
 public interface RecordService {
-	
-	void createRecord(Record record);
-	
-	List<Record> getAllRecordsOfUser(long userId);
-	
+
+    void create(Record record);
+
+    void update(Record record);
+
+    void remove(long id);
+
+    Record getRecord(long id);
+    
+    List<Record> getAllRecordsOfUser(long userId);
+
+    List<Record> getFilteredRecords(LocalDate date);
+    
+    List<Record> getFilteredRecords(LocalDateTime from, LocalDateTime to);
 }

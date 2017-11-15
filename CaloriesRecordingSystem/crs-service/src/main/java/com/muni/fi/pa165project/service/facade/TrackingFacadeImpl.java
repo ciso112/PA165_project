@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.muni.fi.pa165project.service.facade;
 
 import com.muni.fi.pa165project.dto.RecordDTO;
+import com.muni.fi.pa165project.dto.filters.RecordTimeFilterDTO;
 import com.muni.fi.pa165project.entity.Activity;
 import com.muni.fi.pa165project.entity.Record;
 import com.muni.fi.pa165project.entity.User;
@@ -20,40 +16,76 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Radoslav Karlik
+ * @author Radim Podola
  */
-
 @Service
 @Transactional
 public class TrackingFacadeImpl extends FacadeBase implements TrackingFacade {
 
-	@Autowired
-	private RecordService recordService;
-	
-	@Autowired
-	private ActivityService activityService;
-	
-	@Autowired
-	private UserService userService;
-	
-	@Override
-	public void createRecord(RecordDTO recordDto) {
-		Record record = super.map(recordDto, Record.class);
-		
-		Activity activity = this.activityService.findById(recordDto.getActivityId());
-		User user = this.userService.findById(recordDto.getUserId());
-		
-		record.setActivity(activity);
-		record.setUser(user);
-		
-		this.recordService.createRecord(record);
-	}
+    @Autowired
+    private RecordService recordService;
 
-	@Override
-	public List<RecordDTO> getAllRecords(long userId) {
-		List<Record> recordEntites = this.recordService.getAllRecordsOfUser(userId);
-		List<RecordDTO> records = super.mapToList(recordEntites, RecordDTO.class);
-		return records;
-	}
-	
+    @Autowired
+    private ActivityService activityService;
+
+    @Autowired
+    private UserService userService;
+
+    @Override
+    public void createRecord(RecordDTO recordDto) {
+        Record record = super.map(recordDto, Record.class);
+
+        Activity activity = this.activityService.findById(recordDto.getActivityId());
+        User user = this.userService.findById(recordDto.getUserId());
+
+        record.setActivity(activity);
+        record.setUser(user);
+
+        this.recordService.create(record);
+    }
+
+    @Override
+    public void updateRecord(RecordDTO recordDto) {
+        
+        Record record = super.map(recordDto, Record.class);
+        this.recordService.update(record);
+    }
+
+    @Override
+    public void removeRecord(long id) {
+        
+        this.recordService.remove(id);
+    }
+
+    @Override
+    public RecordDTO getRecord(long id) {
+        
+        RecordDTO recordDto = super.map(this.recordService.getRecord(id), RecordDTO.class);
+        
+        return recordDto;
+    }
+
+    @Override
+    public List<RecordDTO> getAllRecords(long userId) {
+        
+        List<Record> recordEntites = this.recordService.getAllRecordsOfUser(userId);
+        List<RecordDTO> records = super.mapToList(recordEntites, RecordDTO.class);
+        
+        return records;
+    }
+
+    @Override
+    public List<RecordDTO> getLastNRecords(long userId, int count) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getWeekProgressOfBurnedCalories(long userId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<RecordDTO> getFilteredRecords(RecordTimeFilterDTO timeFilter) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }	
 }
