@@ -13,7 +13,8 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Radoslav Karlik, Radim Podola
+ * @author Radoslav Karlik
+ * @author Radim Podola
  */
 @Service
 public class RecordServiceImpl implements RecordService {

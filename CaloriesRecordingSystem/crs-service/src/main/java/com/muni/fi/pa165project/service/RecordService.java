@@ -7,7 +7,8 @@ import java.util.List;
 
 /**
  *
- * @author Radoslav Karlik, Radim Podola
+ * @author Radoslav Karlik
+ * @author Radim Podola
  */
 public interface RecordService {
 

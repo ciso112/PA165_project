@@ -5,7 +5,8 @@ import com.muni.fi.pa165project.dto.filters.RecordTimeFilterDTO;
 import java.util.List;
 
 /**
- *
+ * 
+ * @author Radoslav Karlik
  * @author Radim Podola
  */
 public interface TrackingFacade {

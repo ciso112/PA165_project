@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
+ * @author Radoslav Karlik
  * @author Radim Podola
  */
 @Service
