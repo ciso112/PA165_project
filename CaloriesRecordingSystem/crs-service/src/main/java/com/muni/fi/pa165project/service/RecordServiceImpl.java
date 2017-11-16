@@ -32,17 +32,18 @@ public class RecordServiceImpl implements RecordService {
 
     @Override
     public void update(Record record) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.recordDao.update(record);
     }
 
     @Override
     public void remove(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Record record = this.recordDao.findById(id);
+        this.recordDao.delete(record);
     }
 
     @Override
     public Record getRecord(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.recordDao.findById(id);
     }
 
     @Override
@@ -61,4 +62,19 @@ public class RecordServiceImpl implements RecordService {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 	
+    
+    private int calculateBurnedCalories(){
+        return 0; //TODO
+    }
+
+    @Override
+    public List<Record> getAllRecords() {
+        return this.recordDao.findAll();
+    }
+
+    @Override
+    public List<Record> getLastNRecordsOfUser(long userId) {
+      // TODO Auto-generated method stub
+      return null;
+    }
 }

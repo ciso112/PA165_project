@@ -67,26 +67,11 @@ public class TrackingFacadeImpl extends FacadeBase implements TrackingFacade {
     }
 
     @Override
-    public List<RecordDTO> getAllRecords(long userId) {
+    public List<RecordDTO> getAllRecords() {
         
-        List<Record> recordEntites = this.recordService.getAllRecordsOfUser(userId);
+        List<Record> recordEntites = this.recordService.getAllRecords();
         List<RecordDTO> records = super.mapToList(recordEntites, RecordDTO.class);
         
         return records;
     }
-
-    @Override
-    public List<RecordDTO> getLastNRecords(long userId, int count) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getWeekProgressOfBurnedCalories(long userId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<RecordDTO> getFilteredRecords(RecordTimeFilterDTO timeFilter) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }	
 }
