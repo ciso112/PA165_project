@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
- * Created by Peter Krasnan.
+ * Created by Peter Krasnan, Lukáš Císar
  */
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -26,6 +26,14 @@ public class UserDaoImpl implements UserDao {
     public User findByUserName(String username) {
         TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.loginDetails.username = :username", User.class);
         query.setParameter("username", username);
+
+        return query.getSingleResult();
+    }
+    
+    @Override
+    public User findByEmail(String email) {
+        TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.loginDetails.email = :email", User.class);
+        query.setParameter("email", email);
 
         return query.getSingleResult();
     }

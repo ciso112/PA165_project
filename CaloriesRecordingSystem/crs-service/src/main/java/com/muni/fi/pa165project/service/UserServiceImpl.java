@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Radoslav Karlik
+ * @author Radoslav Karlik, Lukáš Císar
  */
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,6 +23,21 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findById(long userId) {
 		return this.userDao.findById(userId);
+	}
+	
+	@Override
+	public User findByEmail(String email){
+		return this.userDao.findByEmail(email);
+	}
+	
+	@Override
+	public void createUser(User user){
+		this.userDao.create(user);
+	}
+	
+	@Override
+	public void deleteUser(User user){
+		this.userDao.delete(user);
 	}
 	
 }
