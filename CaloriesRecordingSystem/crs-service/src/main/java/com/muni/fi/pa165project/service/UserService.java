@@ -9,10 +9,16 @@ import com.muni.fi.pa165project.entity.User;
 
 /**
  *
- * @author Radoslav Karlik
+ * @author Radoslav Karlik, Lukáš Císar
  */
 public interface UserService {
 	
 	User findById(long userId);
+	
+	User findByEmail(String email);
+	
+	void createUser(User user);
+	
+	void deleteUser(User user);
 	
 }
