@@ -42,17 +42,19 @@ public interface RecordService {
      * @return list of all records
      */
     List<Record> getAllRecords();
-
+    
     /**
-     * Get all records for given user
-     * @param userId id of user
+     * Get records at certain date
+     * @param date date
      * @return list of records
      */
-    List<Record> getAllRecordsOfUser(long userId);
-
     List<Record> getFilteredRecords(LocalDate date);
     
+    /**
+     * Get records between certain times
+     * @param from starting time
+     * @param to ending time
+     * @return list of records
+     */
     List<Record> getFilteredRecords(LocalDateTime from, LocalDateTime to);
-    
-    List<Record> getLastNRecordsOfUser(long userId);
 }

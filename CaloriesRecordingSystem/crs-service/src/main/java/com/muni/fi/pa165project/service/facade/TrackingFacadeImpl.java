@@ -1,7 +1,6 @@
 package com.muni.fi.pa165project.service.facade;
 
 import com.muni.fi.pa165project.dto.RecordDTO;
-import com.muni.fi.pa165project.dto.filters.RecordTimeFilterDTO;
 import com.muni.fi.pa165project.entity.Activity;
 import com.muni.fi.pa165project.entity.Record;
 import com.muni.fi.pa165project.entity.User;
@@ -39,9 +38,14 @@ public class TrackingFacadeImpl extends FacadeBase implements TrackingFacade {
         Activity activity = this.activityService.findById(recordDto.getActivityId());
         User user = this.userService.findById(recordDto.getUserId());
 
+        double weight = user.getWeight();
+        record.setWeight(weight);
         record.setActivity(activity);
         record.setUser(user);
-
+        
+        float amount = activityService.getBurnedCalory(activity.getId(), weight);
+        record.setBurnedCalories((int) (amount * record.getDuration()));
+        
         this.recordService.create(record);
     }
 
