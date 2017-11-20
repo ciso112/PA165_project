@@ -29,3 +29,4 @@ hs_err_pid*
 /CaloriesRecordingSystem/crs-persistence/target/
 /CaloriesRecordingSystem/crs-service/target/
 /CaloriesRecordingSystem/crs-api/target/
+/CaloriesRecordingSystem/crs-service/nbproject/

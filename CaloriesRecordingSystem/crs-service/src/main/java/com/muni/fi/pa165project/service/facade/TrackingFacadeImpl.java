@@ -41,10 +41,8 @@ public class TrackingFacadeImpl extends FacadeBase implements TrackingFacade {
         double weight = user.getWeight();
         record.setWeight(weight);
         record.setActivity(activity);
-        record.setUser(user);
-        
-        float amount = activityService.getBurnedCalory(activity.getId(), weight);
-        record.setBurnedCalories((int) (amount * record.getDuration()));
+        record.setUser(user);        
+        record.setBurnedCalories(calculateAmountOfCalories(record));
         
         this.recordService.create(record);
     }
@@ -53,6 +51,14 @@ public class TrackingFacadeImpl extends FacadeBase implements TrackingFacade {
     public void updateRecord(RecordDTO recordDto) {
         
         Record record = super.map(recordDto, Record.class);
+        
+        //TODO will this work?? Is ID in DTO known??
+        Record old = this.recordService.getRecord(record.getId());
+        if (!record.getActivity().equals(old.getActivity())
+            || record.getDuration() != old.getDuration()){
+            record.setBurnedCalories(calculateAmountOfCalories(record));
+        }
+        
         this.recordService.update(record);
     }
 
@@ -77,5 +83,13 @@ public class TrackingFacadeImpl extends FacadeBase implements TrackingFacade {
         List<RecordDTO> records = super.mapToList(recordEntites, RecordDTO.class);
         
         return records;
+    }
+    
+    private int calculateAmountOfCalories(Record record){
+        double weight = record.getUser().getWeight();
+        Long activityId = record.getActivity().getId();
+        
+        float amount = activityService.getBurnedCalory(activityId, weight);
+        return (int) amount * record.getDuration();
     }
 }
