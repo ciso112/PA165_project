@@ -6,6 +6,7 @@
 package com.muni.fi.pa165project.service.facade;
 
 import com.muni.fi.pa165project.dto.ActivityDTO;
+import com.muni.fi.pa165project.dto.ActivityDetailDTO;
 import com.muni.fi.pa165project.dto.filters.ActivityFilterDTO;
 import com.muni.fi.pa165project.dto.BurnedCaloriesDTO;
 import com.muni.fi.pa165project.entity.Activity;
@@ -37,7 +38,7 @@ public class ActivityFacadeImpl extends FacadeBase implements ActivityFacade {
 	}
 
 	@Override
-	public void addBurnedCaloriesToActivity(BurnedCaloriesDTO burnedCaloriesDTO) {
+	public void addBurnedCalorie(BurnedCaloriesDTO burnedCaloriesDTO) {
 		BurnedCalories bc = super.map(burnedCaloriesDTO, BurnedCalories.class);
 		
 		long activityId = burnedCaloriesDTO.getActivityId();
@@ -55,7 +56,7 @@ public class ActivityFacadeImpl extends FacadeBase implements ActivityFacade {
 	}
 
 	@Override
-	public void removeBurnedCaloriesFromActivity(BurnedCaloriesDTO burnedCaloriesDTO) {
+	public void removeBurnedCalorie(BurnedCaloriesDTO burnedCaloriesDTO) {
 		Activity activity = this.activityService.findById(burnedCaloriesDTO.getActivityId());
 		activity.getBurnedCalories().removeIf(bc -> Objects.equals(bc.getId(), burnedCaloriesDTO.getId()));
 		this.activityService.update(activity);
@@ -73,5 +74,20 @@ public class ActivityFacadeImpl extends FacadeBase implements ActivityFacade {
 		List<ActivityDTO> activitiesDTO = super.mapToList(categories, ActivityDTO.class);
 		return activitiesDTO;
 	}
+
+        @Override
+        public void editActivity(ActivityDTO activityDTO) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void editBurnedCalorie(BurnedCaloriesDTO burnedCaloriesDTO) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public ActivityDetailDTO getActivityDetail(Long id) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
 	
 }

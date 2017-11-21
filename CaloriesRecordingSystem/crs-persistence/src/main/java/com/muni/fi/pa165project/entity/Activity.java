@@ -34,7 +34,7 @@ public class Activity implements Serializable {
     private Category category;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activity", orphanRemoval = true)
-    private Set<BurnedCalories> burnedCalories = new HashSet<BurnedCalories>();
+    private Set<BurnedCalories> burnedCalories = new HashSet<>();
 
     public Long getId() {
         return id;
