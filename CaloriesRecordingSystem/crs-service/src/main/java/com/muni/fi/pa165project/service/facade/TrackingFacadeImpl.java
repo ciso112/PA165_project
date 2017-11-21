@@ -1,6 +1,7 @@
 package com.muni.fi.pa165project.service.facade;
 
 import com.muni.fi.pa165project.dto.RecordDTO;
+import com.muni.fi.pa165project.dto.filters.RecordTimeFilterDTO;
 import com.muni.fi.pa165project.entity.Activity;
 import com.muni.fi.pa165project.entity.Record;
 import com.muni.fi.pa165project.entity.User;
@@ -75,21 +76,32 @@ public class TrackingFacadeImpl extends FacadeBase implements TrackingFacade {
         
         return recordDto;
     }
-
-    @Override
-    public List<RecordDTO> getAllRecords() {
-        
-        List<Record> recordEntites = this.recordService.getAllRecords();
-        List<RecordDTO> records = super.mapToList(recordEntites, RecordDTO.class);
-        
-        return records;
-    }
     
     private int calculateAmountOfCalories(Record record){
         double weight = record.getUser().getWeight();
         Long activityId = record.getActivity().getId();
         
-        float amount = activityService.getBurnedCalory(activityId, weight);
+        int amount = activityService.getBurnedCaloriesPerHour(activityId, weight);
         return (int) amount * record.getDuration();
+    }
+
+    @Override
+    public List<RecordDTO> getAllRecords(long userId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<RecordDTO> getLastNRecords(long userId, int count) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<RecordDTO> getFilteredRecords(long userId, RecordTimeFilterDTO timeFilter) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getWeekProgressOfBurnedCalories(long userId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

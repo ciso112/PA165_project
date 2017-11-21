@@ -56,7 +56,7 @@ public class BurnedCalories implements Serializable{
         this.upperWeightBoundary = weight;
     }
     
-    public float getAmount() {
+    public int getAmount() {
         return amount;
     }
 

@@ -59,7 +59,7 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public float getBurnedCalory(long id, double weight) {
+    public int getBurnedCaloriesPerHour(long id, double weight) {
         Activity activity = this.findById(id);
 
         Set<BurnedCalories> calories = new TreeSet<>((BurnedCalories c1, BurnedCalories c2) -> {
