@@ -28,7 +28,7 @@ public interface ActivityService {
     * Get the burned calory for activity with certain weight
     * @param id activity id
     * @param weight weight
-    * @return burned calory 
+    * @return burned calories per hour
     */
-    float getBurnedCalory(long id, double weight);
+    int getBurnedCaloriesPerHour(long id, double weight);
 }
