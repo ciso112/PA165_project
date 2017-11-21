@@ -3,39 +3,57 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 	
     <parent>
-		<groupId>com.muni.fi.pa165project</groupId>
+        <groupId>com.muni.fi.pa165project</groupId>
         <artifactId>crs-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>crs-service</artifactId>
-	<packaging>jar</packaging>
-	<name>Service Layer</name>
+    <packaging>jar</packaging>
+    <name>Service Layer</name>
 	
-	<dependencies>
-		<dependency>
-			<groupId>com.muni.fi.pa165project</groupId>
-			<artifactId>crs-api</artifactId>
-			<version>${project.parent.version}</version>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>com.muni.fi.pa165project</groupId>
+            <artifactId>crs-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
 		
-		<dependency>
-			<groupId>com.muni.fi.pa165project</groupId>
-			<artifactId>crs-persistence</artifactId>
-			<version>${project.parent.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>com.muni.fi.pa165project</groupId>
+            <artifactId>crs-persistence</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+        </dependency>
 		
-		<dependency>
-			<groupId>net.sf.dozer</groupId>
-			<artifactId>dozer</artifactId>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>

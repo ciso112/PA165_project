@@ -8,10 +8,10 @@ public enum Category {
     CYCLING,
     RUNNING,
     WALKING,
-	SWIMMING,
-	AEROBICS,
-	DANCING,
-	EXERCISE,
-	WORK,
-	HOBBY
+    SWIMMING,
+    AEROBICS,
+    DANCING,
+    EXERCISE,
+    WORK,
+    HOBBY
 }

@@ -1,7 +1,6 @@
 package com.muni.fi.pa165project.service.facade;
 
 import com.muni.fi.pa165project.dto.RecordDTO;
-import com.muni.fi.pa165project.dto.filters.RecordTimeFilterDTO;
 import com.muni.fi.pa165project.entity.Activity;
 import com.muni.fi.pa165project.entity.Record;
 import com.muni.fi.pa165project.entity.User;
@@ -16,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
+ * @author Radoslav Karlik
  * @author Radim Podola
  */
 @Service
@@ -38,9 +38,12 @@ public class TrackingFacadeImpl extends FacadeBase implements TrackingFacade {
         Activity activity = this.activityService.findById(recordDto.getActivityId());
         User user = this.userService.findById(recordDto.getUserId());
 
+        double weight = user.getWeight();
+        record.setWeight(weight);
         record.setActivity(activity);
-        record.setUser(user);
-
+        record.setUser(user);        
+        record.setBurnedCalories(calculateAmountOfCalories(record));
+        
         this.recordService.create(record);
     }
 
@@ -48,6 +51,14 @@ public class TrackingFacadeImpl extends FacadeBase implements TrackingFacade {
     public void updateRecord(RecordDTO recordDto) {
         
         Record record = super.map(recordDto, Record.class);
+        
+        //TODO will this work?? Is ID in DTO known??
+        Record old = this.recordService.getRecord(record.getId());
+        if (!record.getActivity().equals(old.getActivity())
+            || record.getDuration() != old.getDuration()){
+            record.setBurnedCalories(calculateAmountOfCalories(record));
+        }
+        
         this.recordService.update(record);
     }
 
@@ -66,26 +77,19 @@ public class TrackingFacadeImpl extends FacadeBase implements TrackingFacade {
     }
 
     @Override
-    public List<RecordDTO> getAllRecords(long userId) {
+    public List<RecordDTO> getAllRecords() {
         
-        List<Record> recordEntites = this.recordService.getAllRecordsOfUser(userId);
+        List<Record> recordEntites = this.recordService.getAllRecords();
         List<RecordDTO> records = super.mapToList(recordEntites, RecordDTO.class);
         
         return records;
     }
-
-    @Override
-    public List<RecordDTO> getLastNRecords(long userId, int count) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    private int calculateAmountOfCalories(Record record){
+        double weight = record.getUser().getWeight();
+        Long activityId = record.getActivity().getId();
+        
+        float amount = activityService.getBurnedCalory(activityId, weight);
+        return (int) amount * record.getDuration();
     }
-
-    @Override
-    public int getWeekProgressOfBurnedCalories(long userId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<RecordDTO> getFilteredRecords(RecordTimeFilterDTO timeFilter) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }	
 }

@@ -6,9 +6,7 @@
 package com.muni.fi.pa165project.dto;
 
 import com.muni.fi.pa165project.enums.Category;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  *
@@ -23,8 +21,6 @@ public class ActivityDTO {
 	private String description;
 	
 	private Category category;
-
-	private Set<BurnedCaloriesDTO> burnedCalories = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -56,14 +52,6 @@ public class ActivityDTO {
 
 	public void setCategory(Category category) {
 		this.category = category;
-	}
-
-	public Set<BurnedCaloriesDTO> getBurnedCalories() {
-		return burnedCalories;
-	}
-
-	public void setBurnedCalories(Set<BurnedCaloriesDTO> burnedCalories) {
-		this.burnedCalories = burnedCalories;
 	}
 
 	@Override

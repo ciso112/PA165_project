@@ -20,37 +20,37 @@ import com.muni.fi.pa165project.enums.Category;
  */
 @Entity
 public class Activity implements Serializable {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(nullable = false, unique=true)
-	private String name;
-		
-	private String description;
-	
-	@Enumerated(EnumType.STRING)
-	private Category category;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "activity", orphanRemoval = true)
-	private Set<BurnedCalories> burnedCalories = new HashSet<BurnedCalories>();
-		
-	public Long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column(nullable = false, unique=true)
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    private String description;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "activity", orphanRemoval = true)
+    private Set<BurnedCalories> burnedCalories = new HashSet<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getDescription() {
         return description;
@@ -61,33 +61,32 @@ public class Activity implements Serializable {
     }
     
     public Category getCategory() {
-      return category;
+        return category;
     }
     
     public void setCategory(Category category) {
-      this.category = category;
+        this.category = category;
     }
     
     public Set<BurnedCalories> getBurnedCalories() {
-      return burnedCalories;
+        return burnedCalories;
     }
     
     public void setBurnedCalories(Set<BurnedCalories> burnedCalories) {
-      this.burnedCalories = burnedCalories;
+        this.burnedCalories = burnedCalories;
     }
-    
-	public void addBurnedCaloriesItem(BurnedCalories burnedCaloriesItem){
-		this.burnedCalories.add(burnedCaloriesItem);
-		burnedCaloriesItem.setActivity(this);
-	}
-	
-	@Override
-	public int hashCode() {
 
-		int result = 17;
+    public void addBurnedCaloriesItem(BurnedCalories burnedCaloriesItem){
+        this.burnedCalories.add(burnedCaloriesItem);
+        burnedCaloriesItem.setActivity(this);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
         result = 31 * result + name.hashCode();
         return result;
-	}
+    }
 
     @Override
     public boolean equals(Object obj) {
