@@ -40,6 +40,7 @@ import { ActivityDetailStaticComponent } from './activity-detail-static/activity
 import {SettingsService} from './_services/settings.service';
 import {RecordFormComponent} from './record-form/record-form.component';
 import { TrackingSettingsComponent } from './tracking-settings/tracking-settings.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { TrackingSettingsComponent } from './tracking-settings/tracking-settings
     ActivityDetailFormComponent,
     ActivityDetailStaticComponent,
     RecordFormComponent,
-    TrackingSettingsComponent
+    TrackingSettingsComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,55 @@
+<table class="table table-hover ">
+  <thead>
+  <tr>
+    <th>
+      Name
+    </th>
+    <th *ngIf="!hideUser">
+      Username
+    </th>
+    <th>
+      Email
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of usersShow">
+    <td>
+      <a
+        *ngIf="!useButtonForUserLink;"
+        routerLink="/user/{{user.id}}"
+        disabled=""
+      >
+        {{ user.name }}
+      </a>
+
+    </td>
+    <td>
+      <a
+
+        routerLink="/user/{{user.id}}"
+        disabled=""
+      >
+        {{ user.username }}
+      </a>
+    </td>
+    <td>
+      <a
+
+        routerLink="/user/{{user.id}}"
+        disabled=""
+      >
+        {{ user.email }}
+      </a>
+    </td>
+    <td *ngIf="useButtonForUserLink">
+      <a
+        class="btn btn-primary"
+        routerLink="/users/{{user.id}}"
+      >
+        View details
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
