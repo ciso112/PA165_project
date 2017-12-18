@@ -4,6 +4,8 @@ import org.dozer.CustomConverter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -16,6 +18,7 @@ public class LocalDateConverter implements CustomConverter {
         if (type.equals(LocalDate.class) && type1.equals(String.class)) {
             return LocalDate.parse((String)o1, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         }
+        
         return null;
     }
     

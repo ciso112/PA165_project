@@ -47,6 +47,7 @@ public class ActivityFacadeImpl implements ActivityFacade {
         log.debug("Creating activity with name <{}>", activityCreateDTO.getName());
 
         Activity activity = mapper.map(activityCreateDTO, Activity.class);
+        
         this.activityService.create(activity);
         return activity.getId();
     }

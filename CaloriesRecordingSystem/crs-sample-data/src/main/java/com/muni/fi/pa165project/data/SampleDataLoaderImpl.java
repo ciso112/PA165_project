@@ -51,22 +51,23 @@ public class SampleDataLoaderImpl implements SampleDataLoader {
         log.debug("loadData() start");
 
         loadActivities();
-        loadUsers();loadRecords();
+        loadUsers();
+        loadRecords();
     }
 
     private void loadRecords() {
         long userId = userFacade.getUser("admin@fi.muni.cz").getId();
         long activityId = acFacade.getAllActivities().get(0).getId();
         createRecord(userId, activityId, LocalDateTime.now(), 100, 50);
-        createRecord(userId, activityId, LocalDateTime.now(), 200, 100);
-        createRecord(userId, activityId, LocalDateTime.now(), 10, 10);
+        createRecord(userId, activityId, LocalDateTime.now().minusHours(1), 200, 100);
+        createRecord(userId, activityId, LocalDateTime.now().minusDays(2), 10, 10);
     }
 
     private Long createRecord(long userId, long activityId, LocalDateTime time, int distance, int duration) {
         RecordCreateDTO record = new RecordCreateDTO();
         record.setUserId(userId);
         record.setActivityId(activityId);
-        record.setAtTime(time);
+        record.setAtTime(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm").format(time));
         record.setDistance(distance);
         record.setDuration(duration);
 

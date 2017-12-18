@@ -13,6 +13,8 @@ public class RecordGetUpdateDTO {
 
     private int duration;
 
+    private double weight;
+    
     public long getActivityId() {
         return activityId;
     }
@@ -44,4 +46,13 @@ public class RecordGetUpdateDTO {
     public void setDuration(int duration) {
         this.duration = duration;
     }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+    
 }

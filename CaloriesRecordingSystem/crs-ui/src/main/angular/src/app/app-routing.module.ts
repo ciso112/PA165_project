@@ -29,6 +29,7 @@ const routes: Routes = [
   { path: 'records', component: RecordListComponent, canActivate: [UserLoggedInGuard] },
   { path: 'records/new', component: RecordFormComponent, canActivate: [UserLoggedInGuard] },
   { path: 'records/:id', component: RecordDetailComponent, canActivate: [UserLoggedInGuard] },
+  { path: 'records/:id/edit', component: RecordFormComponent, canActivate: [UserLoggedInGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [UserLoggedInGuard] },
   { path: 'trackingSettings', component: TrackingSettingsComponent, canActivate: [UserLoggedInGuard] },
   { path: 'login', component: LoginFormComponent, canActivate: [UserNotLoggedInGuard] },

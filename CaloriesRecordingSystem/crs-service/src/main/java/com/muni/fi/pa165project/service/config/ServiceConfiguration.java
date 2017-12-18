@@ -17,6 +17,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import java.util.Collections;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Radoslav Karlik
@@ -43,24 +45,23 @@ public class ServiceConfiguration {
                         .fields("categoryObject", "category");
                 mapping(ActivityDTO.class, ActivityUpdateDTO.class, TypeMappingOptions.oneWay())
                         .fields("category.id", "category");
-                mapping(Record.class, RecordDTO.class, TypeMappingOptions.oneWay())
-                        .fields("activity.name", "activityName")
-                        .fields("activity.id", "activityId")
-                        .fields("user.id", "userId");
-                mapping(User.class, UserDetailDTO.class)
-                        .fields("loginDetails.username", "username")
-                        .fields("loginDetails.email", "email");
-                mapping(UserRegisterDTO.class, User.class)
+                mapping(RecordDTO.class, Record.class, TypeMappingOptions.oneWay())
+                        .fields("activityName", "activity.name")
+                        .fields("activityId", "activity.id");
+                mapping(UserDetailDTO.class, User.class, TypeMappingOptions.oneWay())
                         .fields("username", "loginDetails.username")
-                        .fields("password", "loginDetails.password")
-                        .fields("email", "loginDetails.email")
-                        .fields("birthDate", "birthDate", FieldsMappingOptions.customConverter(LocalDateConverter.class));
-                mapping(UserUpdateDTO.class, User.class)
-                        .fields("password", "loginDetails.password")
                         .fields("email", "loginDetails.email");
-                mapping(RecordCreateDTO.class, Record.class)
+                mapping(User.class, UserRegisterDTO.class)
+                        .fields("loginDetails.username", "username")
+                        .fields("loginDetails.password", "password")
+                        .fields("loginDetails.email", "email")
+                        .fields("birthDate", "birthDate", FieldsMappingOptions.customConverter(LocalDateConverter.class));
+                mapping(User.class, UserUpdateDTO.class)
+                        .fields("loginDetails.password", "password")
+                        .fields("loginDetails.email", "email");
+                mapping(Record.class, RecordCreateDTO.class)
                         .fields("atTime", "atTime", FieldsMappingOptions.customConverter(LocalDateTimeConverter.class));
-                mapping(RecordDTO.class, RecordGetUpdateDTO.class)
+                mapping(RecordGetUpdateDTO.class, RecordDTO.class)
                         .fields("atTime", "atTime", FieldsMappingOptions.customConverter(LocalDateTimeConverter.class));
             }
         };

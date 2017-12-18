@@ -19,7 +19,10 @@ export class RecordListComponent implements OnInit {
   loadAllUserRecordsFromServer() {
     this.recordService
       .getAllRecordsOfUser()
-      .subscribe(userRecords => this.userRecordsCached = userRecords);
+      .subscribe(userRecords => {
+        this.userRecordsCached = userRecords;
+        this.getAllUserRecords();
+      });
   }
 
   getAllUserRecords() {
@@ -28,12 +31,11 @@ export class RecordListComponent implements OnInit {
 
   getWeekProgressOfBurnedCalories() {
     this.recordService.getWeekProgressOfBurnedCalories()
-      .subscribe(progress => this.progress = progress.toString() + '%')
+      .subscribe(progress => this.progress = progress.toString() + '%');
   }
 
   ngOnInit() {
     this.loadAllUserRecordsFromServer();
-    this.getAllUserRecords();
     this.getWeekProgressOfBurnedCalories();
   }
 

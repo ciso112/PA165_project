@@ -17,6 +17,12 @@
       <h2>
         Record
       </h2>
+      <a
+        class="btn btn-primary"
+        routerLink="/records/{{id}}/edit"
+      >
+        Edit
+      </a>
       <hr>
     </div>
   </div>
@@ -27,21 +33,16 @@
         Activity
       </label>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-6">
       <div class="form-group">
         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          <select
+          <a
             id="activity"
-            name="activity"
-            [(ngModel)]="record.activityId"
+            class="form-control text-primary"
+            routerLink="/activities/{{record.activityId}}"
           >
-            <option
-              *ngFor="let activity of activities"
-              [value]="activity.id"
-            >
-              {{ activity.name }}
-            </option>
-          </select>
+            {{ record.activityName }}
+          </a>
         </div>
       </div>
     </div>
@@ -56,13 +57,9 @@
     <div class="col-md-6">
       <div class="form-group">
         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          <input
-            type="datetime-local"
-            name="date"
-            class="form-control"
-            id="date"
-            [(ngModel)]="record.date"
-          >
+          <span class="form-control">
+            {{ record.atTime }}
+          </span>
         </div>
       </div>
     </div>
@@ -70,21 +67,16 @@
 
   <div class="row">
     <div class="col-md-3 field-label-responsive">
-      <label for="calories">
+      <label>
         Burned calories
       </label>
     </div>
-    <div class="col-md-auto">
+    <div class="col-md-6">
       <div class="form-group">
         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          <input
-            type="number"
-            name="calories"
-            class="form-control"
-            id="calories"
-            [(ngModel)]="record.burnedCalories"
-            disabled
-          >
+          <span class="form-control">
+            {{ record.burnedCalories }}
+          </span>
         </div>
       </div>
     </div>
@@ -92,120 +84,52 @@
 
   <div class="row">
     <div class="col-md-3 field-label-responsive">
-      <label for="distance">
+      <label>
         Distance
       </label>
     </div>
-    <div class="col-md-auto">
+    <div class="col-md-6">
       <div class="form-group">
         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          <input
-            type="number"
-            name="distance"
-            class="form-control"
-            id="distance"
-            [(ngModel)]="record.distance"
-            appNumberMinMax
-            #validateDistance="ngModel"
-            [minValue]="1"
-            [wrongNumberMessage]="'Distance must be at least 1'"
-          >
+          <span class="form-control">
+            {{ record.distance }}
+          </span>
         </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div
-        *ngIf="validateDistance.errors && (validateDistance.dirty || validateDistance.touched)"
-        class="form-control-feedback"
-      >
-            <span class="text-danger align-middle">
-              <i class="fa fa-close">
-                {{ validateDistance.errors.message }}
-              </i>
-            </span>
       </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-3 field-label-responsive">
-      <label for="duration">
+      <label>
         Duration
       </label>
     </div>
-    <div class="col-md-auto">
+    <div class="col-md-6">
       <div class="form-group">
         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          <input
-            type="number"
-            name="duration"
-            class="form-control"
-            id="duration"
-            [(ngModel)]="record.duration"
-            appNumberMinMax
-            #validateDuration="ngModel"
-            [minValue]="1"
-            [wrongNumberMessage]="'Duration must be at least 1'"
-          >
+          <span class="form-control">
+            {{ record.duration }}
+          </span>
         </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div
-        *ngIf="validateDuration.errors && (validateDuration.dirty || validateDuration.touched)"
-        class="form-control-feedback"
-      >
-            <span class="text-danger align-middle">
-              <i class="fa fa-close">
-                {{ validateDuration.errors.message }}
-              </i>
-            </span>
       </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-3 field-label-responsive">
-      <label for="bodyweight">
+      <label>
         Bodyweight
       </label>
     </div>
-    <div class="col-md-auto">
+    <div class="col-md-6">
       <div class="form-group">
         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          <input
-            type="number"
-            name="bodyweight"
-            class="form-control"
-            id="bodyweight"
-            [(ngModel)]="record.weight"
-            appNumberMinMax
-            #validateWeight="ngModel"
-            [minValue]="20"
-            [wrongNumberMessage]="'Weight must be at least 20'"
-          >
+          <span class="form-control">
+            {{ record.weight }}
+          </span>
         </div>
       </div>
     </div>
-    <div class="col-md-3">
-      <div
-        *ngIf="validateWeight.errors && (validateWeight.dirty || validateWeight.touched)"
-        class="form-control-feedback"
-      >
-            <span class="text-danger align-middle">
-              <i class="fa fa-close">
-                {{ validateWeight.errors.message }}
-              </i>
-            </span>
-      </div>
-    </div>
   </div>
-
-  <button
-    class="btn btn-success"
-    (click)="saveRecordDetails()"
-    [disabled]="validateDuration.errors || validateDistance.errors || validateWeight.errors"
-  >
-    Save changes
-  </button>
 </div>

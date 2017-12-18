@@ -59,7 +59,7 @@ public class FacadeTestHelper {
         record.setDistance(100);
         record.setDuration(1);
         record.setActivityId(activityId);
-        record.setAtTime(LocalDateTime.now());
+        record.setAtTime(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm").format(LocalDateTime.now()));
         return record;
     }
 }

@@ -21,6 +21,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,10 +82,10 @@ public class TrackingFacadeImplTest {
 
         RecordDTO recordDTO = new RecordDTO();
         recordDTO.setId(1L);
-        recordDTO.setAtTime(LocalDateTime.now());
+        recordDTO.setAtTime(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm").format(LocalDateTime.now()));
         recordDTO.setActivityId(activity.getId());
 
-        record.setAtTime(recordDTO.getAtTime());
+        record.setAtTime(LocalDateTime.parse(recordDTO.getAtTime(), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
         record.setActivity(activity);
     }
 

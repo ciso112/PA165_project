@@ -16,7 +16,7 @@ public class RecordDTO {
 
     private String activityName;
 
-    private LocalDateTime atTime;
+    private String atTime;
 
     private int burnedCalories;
 
@@ -44,11 +44,11 @@ public class RecordDTO {
         this.activityName = activityName;
     }
 
-    public LocalDateTime getAtTime() {
+    public String getAtTime() {
         return atTime;
     }
 
-    public void setAtTime(LocalDateTime atTime) {
+    public void setAtTime(String atTime) {
         this.atTime = atTime;
     }
 

@@ -8,27 +8,17 @@ package com.muni.fi.pa165project.dto;
 public class RecordUpdateDTO extends RecordGetUpdateDTO {
 
     private long userId;
+    
+    private long id;
 
-    private Long id;
-
-    private double weight;
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
+    
     public long getUserId() {
         return userId;
     }

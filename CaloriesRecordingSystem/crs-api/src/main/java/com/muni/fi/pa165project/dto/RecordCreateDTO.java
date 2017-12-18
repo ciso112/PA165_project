@@ -13,7 +13,7 @@ public class RecordCreateDTO {
 
     private long userId;
 
-    private LocalDateTime atTime;
+    private String atTime;
 
     private int distance;
 
@@ -35,11 +35,11 @@ public class RecordCreateDTO {
         this.userId = userId;
     }
 
-    public LocalDateTime getAtTime() {
+    public String getAtTime() {
         return atTime;
     }
 
-    public void setAtTime(LocalDateTime atTime) {
+    public void setAtTime(String atTime) {
         this.atTime = atTime;
     }
 

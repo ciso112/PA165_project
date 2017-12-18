@@ -112,7 +112,7 @@
     </div>
     <div class="col-md-3">
       <div
-        *ngIf="activity.categoryId === undefined"
+        *ngIf="activity.category === undefined"
         class="form-control-feedback"
       >
           <span class="text-danger align-middle">
@@ -131,7 +131,7 @@
         type="submit"
         class="btn btn-success"
         (click)="createNewActivity()"
-        [disabled]="nameValidation.errors || activity.categoryId === undefined"
+        [disabled]="nameValidation.errors || activity.category === undefined"
       >
         Create
       </button>

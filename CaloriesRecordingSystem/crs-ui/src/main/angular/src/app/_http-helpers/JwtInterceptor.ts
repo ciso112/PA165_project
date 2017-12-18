@@ -37,6 +37,8 @@ class JwtInterceptor implements HttpInterceptor {
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401 || err.status === 403) {
               this.router.navigateByUrl('/login');
+            } else if (err.status === 404) {
+              this.router.navigateByUrl('/settings');
             }
           }
         }

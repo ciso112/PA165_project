@@ -1,4 +1,4 @@
-export class Record {
+export interface IRecordForUpdate {
   activityId: number;
   atTime: string;
   duration: number;

@@ -18,7 +18,7 @@ public class LocalDateTimeConverter implements CustomConverter {
         if (type.equals(String.class) && type1.equals(LocalDateTime.class)) {
             return DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm").format((LocalDateTime)o1);
         }
-
+        
         return null;
     }
 }

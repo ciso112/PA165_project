@@ -28,17 +28,23 @@
       </a>
     </td>
     <td>
-      {{ userRecord.date }}
+      {{ userRecord.atTime }}
     </td>
     <td>
       {{ userRecord.burnedCalories }}
     </td>
     <td>
       <a
-        class="btn btn-primary"
+        class="btn btn-primary mr-2"
         routerLink="/records/{{userRecord.id}}"
       >
         View details
+      </a>
+      <a
+        class="btn btn-primary"
+        routerLink="/records/{{userRecord.id}}/edit"
+      >
+        Edit
       </a>
     </td>
   </tr>
