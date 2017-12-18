@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Set;
 
 import static java.time.DayOfWeek.MONDAY;
 import static java.time.temporal.TemporalAdjusters.previousOrSame;
@@ -92,4 +93,9 @@ public class UserServiceImpl implements UserService {
     public boolean userWithUsernameExists(String username) {
         return this.userDao.userWithUsernameExists(username);
     }
+
+	@Override
+	public List<User> getUsers() {
+		return this.userDao.findAll();
+	}
 }

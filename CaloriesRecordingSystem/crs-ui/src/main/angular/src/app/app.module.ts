@@ -41,6 +41,7 @@ import {SettingsService} from './_services/settings.service';
 import {RecordFormComponent} from './record-form/record-form.component';
 import { TrackingSettingsComponent } from './tracking-settings/tracking-settings.component';
 import { UserListComponent } from './user-list/user-list.component';
+import {UserService} from "./_services/user.service";
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { UserListComponent } from './user-list/user-list.component';
     UserNotLoggedInGuard,
     UserIsAdminGuard,
     LoginEventsService,
+    UserService,
   ],
   bootstrap: [AppComponent],
 })

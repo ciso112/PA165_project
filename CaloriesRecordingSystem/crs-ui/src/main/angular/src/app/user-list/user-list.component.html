@@ -4,7 +4,7 @@
     <th>
       Name
     </th>
-    <th *ngIf="!hideUser">
+    <th>
       Username
     </th>
     <th>
@@ -16,8 +16,6 @@
   <tr *ngFor="let user of usersShow">
     <td>
       <a
-        *ngIf="!useButtonForUserLink;"
-        routerLink="/user/{{user.id}}"
         disabled=""
       >
         {{ user.name }}
@@ -27,7 +25,6 @@
     <td>
       <a
 
-        routerLink="/user/{{user.id}}"
         disabled=""
       >
         {{ user.username }}
@@ -36,18 +33,33 @@
     <td>
       <a
 
-        routerLink="/user/{{user.id}}"
-        disabled=""
+         disabled=""
       >
         {{ user.email }}
       </a>
     </td>
-    <td *ngIf="useButtonForUserLink">
+    <td>
+      <a
+
+        disabled=""
+      >
+        {{ user.email }}
+
+      </a>
+    </td>
+    <td>
+      <a
+
+        disabled=""
+      >
+        {{user.records}}
+
+      </a>
       <a
         class="btn btn-primary"
-        routerLink="/users/{{user.id}}"
       >
-        View details
+
+        View records
       </a>
     </td>
   </tr>

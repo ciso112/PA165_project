@@ -1,10 +1,15 @@
 package com.muni.fi.pa165project.service.facade;
 
+
 import com.muni.fi.pa165project.dto.*;
 import com.muni.fi.pa165project.entity.User;
 import com.muni.fi.pa165project.facade.UserFacade;
 import com.muni.fi.pa165project.service.MappingService;
+import com.muni.fi.pa165project.service.RecordService;
 import com.muni.fi.pa165project.service.UserService;
+
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +30,9 @@ public class UserFacadeImpl implements UserFacade {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private RecordService recordService;
 
     @Override
     public Long createUser(UserRegisterDTO userDto) {
@@ -55,11 +63,11 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public UserDetailDTO getUser(long id) {
+    public AuthenticatedUserDTO getUser(long id) {
         log.debug("Getting User with id <{}>", id);
 
         User user = this.userService.findById(id);
-        return mapper.map(user, UserDetailDTO.class);
+        return mapper.map(user, AuthenticatedUserDTO.class);
     }
 
     @Override
@@ -95,7 +103,7 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public UserDetailDTO findByCredentials(UserCredentialsDTO credentials) {
+    public AuthenticatedUserDTO findByCredentials(UserCredentialsDTO credentials) {
         String username = credentials.getUsername();
         String password = credentials.getPassword();
 
@@ -104,8 +112,9 @@ public class UserFacadeImpl implements UserFacade {
         if (user == null) {
             return null;
         }
+        
+        return mapper.map(user, AuthenticatedUserDTO.class);
 
-        return mapper.map(user, UserDetailDTO.class);
     }
 
     @Override
@@ -119,4 +128,14 @@ public class UserFacadeImpl implements UserFacade {
 
         return response;
     }
+
+	@Override
+	public List<UserDetailDTO> getUsers() {
+		return  mapper.mapToList(userService.getUsers(),UserDetailDTO.class);
+	}
+	
+	@Override
+	public long getNumberOfUserRecords(long userId){
+		return recordService.getNumberOfUserRecords(userId);
+	}
 }

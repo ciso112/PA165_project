@@ -1,6 +1,5 @@
 package com.muni.fi.pa165project.dto;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -12,19 +11,11 @@ public class UserDetailDTO {
 
     private String name;
 
-    private LocalDate birthDate;
-
-    private double weight;
-
-    private double height;
-
-    private boolean isMale;
-
-    private boolean isAdmin;
-
     private String username;
 
     private String email;
+    
+    private long numberOfRecords;
 
     public Long getId() {
         return id;
@@ -40,46 +31,6 @@ public class UserDetailDTO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(double height) {
-        this.height = height;
-    }
-
-    public boolean getIsMale() {
-        return isMale;
-    }
-
-    public void setIsMale(boolean isMale) {
-        this.isMale = isMale;
-    }
-
-    public boolean getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
     }
 
     public String getUsername() {
@@ -102,9 +53,8 @@ public class UserDetailDTO {
     public int hashCode() {
         int hash = 11;
         hash = 7 * hash + Objects.hashCode(this.name);
-        hash = 7 * hash + Objects.hashCode(this.weight);
-        hash = 7 * hash * Objects.hashCode(this.birthDate);
-        hash = 7 * hash + username.hashCode();
+        hash = 7 * hash + Objects.hashCode(this.email);
+        hash = 7 * hash * Objects.hashCode(this.username);
         return hash;
     }
 
@@ -128,4 +78,12 @@ public class UserDetailDTO {
         }
         return true;
     }
+
+	public long getNumberOfRecords() {
+		return numberOfRecords;
+	}
+
+	public void setNumberOfRecords(long numberOfRecords) {
+		this.numberOfRecords = numberOfRecords;
+	}
 }

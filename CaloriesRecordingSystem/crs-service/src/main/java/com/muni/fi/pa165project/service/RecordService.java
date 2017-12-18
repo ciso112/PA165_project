@@ -68,5 +68,13 @@ public interface RecordService {
      * @return list of records
      */
     List<Record> getFilteredRecords(long userId, LocalDateTime from, LocalDateTime to);
+    
+    /**
+     * Get User records between certain times
+     *
+     * @param userId user id
+     * @return long number of records
+     */
+    long getNumberOfUserRecords(long userId);
 
 }

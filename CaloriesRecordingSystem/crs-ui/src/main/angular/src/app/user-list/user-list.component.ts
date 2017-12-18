@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../_services/user.service";
-import {IUserShow} from "../_interfaces/IUserShow";
+import {IUserDetail} from "../_interfaces/IUserDetail";
 
 @Component({
   selector: 'app-user-list',
@@ -9,8 +9,8 @@ import {IUserShow} from "../_interfaces/IUserShow";
 })
 export class UserListComponent implements OnInit {
 
-  usersShowCache: IUserShow[];
-  usersShow: IUserShow[];
+  usersShowCache: IUserDetail[];
+  usersShow: IUserDetail[];
 
   constructor(
     private userService: UserService
@@ -18,17 +18,20 @@ export class UserListComponent implements OnInit {
 
   loadAllUsersShowFromServer() {
     this.userService
-      .getAllUsersShow()
-      .subscribe(usersShow => this.usersShowCache = usersShow);
+      .getAllUsers()
+      .subscribe(usersShow => {
+        this.usersShowCache = usersShow;
+        this.getUsers();
+      });
   }
 
-  getAllUsersShow() {
+  getUsers() {
     this.usersShow = this.usersShowCache;
   }
 
   ngOnInit() {
     this.loadAllUsersShowFromServer();
-    this.getAllUsersShow();
+
   }
 
 

@@ -1,6 +1,17 @@
 package com.muni.fi.pa165project.facade;
 
-import com.muni.fi.pa165project.dto.*;
+import java.util.List;
+
+import com.muni.fi.pa165project.dto.AuthenticatedUserDTO;
+import com.muni.fi.pa165project.dto.LoginExistsRequestDTO;
+import com.muni.fi.pa165project.dto.LoginExistsResponseDTO;
+import com.muni.fi.pa165project.dto.TrackingSettingsDTO;
+import com.muni.fi.pa165project.dto.TrackingSettingsUpdateDTO;
+import com.muni.fi.pa165project.dto.UserCredentialsDTO;
+import com.muni.fi.pa165project.dto.UserDetailDTO;
+import com.muni.fi.pa165project.dto.UserRegisterDTO;
+import com.muni.fi.pa165project.dto.UserUpdateDTO;
+
 
 /**
  * @author Radoslav Karlik
@@ -36,7 +47,7 @@ public interface UserFacade {
      *
      * @param id user id
      */
-    UserDetailDTO getUser(long id);
+    AuthenticatedUserDTO getUser(long id);
 
     /**
      * Get information about User by email
@@ -44,6 +55,12 @@ public interface UserFacade {
      * @param email users's email
      */
     UserDetailDTO getUser(String email);
+    
+    /**
+     * Get information about Users 
+     *
+    */
+    List<UserDetailDTO> getUsers();
 
     /**
      * Set tracking settings for user (goals)
@@ -66,8 +83,8 @@ public interface UserFacade {
      * @param credentials
      * @return User if credentials match, null otherwise
      */
-    UserDetailDTO findByCredentials(UserCredentialsDTO credentials);
-
+    AuthenticatedUserDTO findByCredentials(UserCredentialsDTO credentials);
+    
     /**
      * Checks whether any user with given username or email exists
      *
@@ -75,4 +92,11 @@ public interface UserFacade {
      * @return
      */
     LoginExistsResponseDTO loginExists(LoginExistsRequestDTO dto);
+    
+    /**
+     * Returns a number of usr records
+     * @param userId
+     * @return number of records
+     */
+	long getNumberOfUserRecords(long userId);
 }

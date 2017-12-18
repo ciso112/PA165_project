@@ -56,4 +56,12 @@ public class RecordServiceImpl implements RecordService {
     public List<Record> getFilteredRecords(long userId, LocalDateTime from, LocalDateTime to) {
         return this.recordDao.findByTime(userId, from, to);
     }
+
+	@Override
+	public long getNumberOfUserRecords(long userId) {
+		return recordDao.getNumberOfAllRecordsOfUser(userId);
+		
+	}
+    
+     
 }

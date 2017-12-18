@@ -5,7 +5,7 @@
  */
 package com.muni.fi.pa165project.rest.security;
 
-import com.muni.fi.pa165project.dto.UserDetailDTO;
+import com.muni.fi.pa165project.dto.AuthenticatedUserDTO;
 import com.muni.fi.pa165project.entity.User;
 import com.muni.fi.pa165project.service.UserService;
 import io.jsonwebtoken.Claims;
@@ -33,7 +33,7 @@ public class AuthorizationService {
     @Inject
     private UserService userService;
     
-    public static String getTokenForUser(UserDetailDTO user) {
+    public static String getTokenForUser(AuthenticatedUserDTO user) {
         Key key = KeyManager.getKey();
         
         String token = Jwts
@@ -60,7 +60,7 @@ public class AuthorizationService {
         }
 
         if (claims != null) {
-            logger.debug("claims: " + claims);
+            logger.debug(" claims: " + claims);
 
             Long userId = claims.get("userId", Long.class);
             

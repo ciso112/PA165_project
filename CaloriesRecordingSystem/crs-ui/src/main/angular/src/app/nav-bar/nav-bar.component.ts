@@ -12,6 +12,7 @@ export class NavBarComponent {
 
   collapse = true;
   userLoggedIn: boolean;
+  userIsAdmin: boolean;
 
   @Input() title: string;
 
@@ -21,8 +22,13 @@ export class NavBarComponent {
     private router: Router,
   ) {
     this.userLoggedIn = this.authService.isUserLoggedIn();
+    this.userIsAdmin = this.authService.isUserAdmin();
     this.loginEvents.changeHappened.subscribe(
-      () => this.userLoggedIn = this.authService.isUserLoggedIn()
+      () => {
+        this.userIsAdmin = this.authService.isUserAdmin();
+        console.log(this.userIsAdmin);
+        this.userLoggedIn = this.authService.isUserLoggedIn();
+      }
     );
   }
 

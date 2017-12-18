@@ -71,5 +71,16 @@ public interface RecordDao {
      * @return list of record objects
      */
     List<Record> getAllRecordsOfUserSortedFromNewest(long userId);
+    
+    /**
+     * Returns all records of user sorted by time from newest
+     *
+     * @param userId user id
+     * @return number of records
+     */
+    long getNumberOfAllRecordsOfUser(long userId);
+    
+    
+    
 
 }

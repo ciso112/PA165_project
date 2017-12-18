@@ -1,5 +1,6 @@
 package com.muni.fi.pa165project.rest.controllers;
 
+import com.muni.fi.pa165project.dto.AuthenticatedUserDTO;
 import com.muni.fi.pa165project.dto.TrackingSettingsDTO;
 import com.muni.fi.pa165project.dto.TrackingSettingsUpdateDTO;
 import com.muni.fi.pa165project.dto.UserDetailDTO;
@@ -16,6 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -34,12 +37,26 @@ public class UsersController {
 
     @Inject
     private UserFacade userFacade;
+    
+   
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public final List<UserDetailDTO> getUsers() {
 
+        logger.debug("rest getUser()");
+        List<UserDetailDTO> users = userFacade.getUsers();
+        for(UserDetailDTO user: users){
+        	 long numberOfRecords= userFacade.getNumberOfUserRecords(user.getId());
+        	 user.setNumberOfRecords(numberOfRecords);
+        }
+        return users;
+    }
+    
+    @ApplyAuthorizeFilter(securityLevel = SecurityLevel.ADMIN)
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final UserDetailDTO getUser(@PathVariable("id") long userId) {
+    public final AuthenticatedUserDTO getUser(@PathVariable("id") long userId) {
 
         logger.debug("rest getUser({})", userId);
-        UserDetailDTO user = userFacade.getUser(userId);
+        AuthenticatedUserDTO user = userFacade.getUser(userId);
 
         return user;
     }
@@ -56,10 +73,10 @@ public class UsersController {
      */
     @ApplyAuthorizeFilter(securityLevel = SecurityLevel.MEMBER)
     @RequestMapping(value = "/settings", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final UserDetailDTO getUserSettingsDetail(@RequestAttribute("userId") long userId) {
+    public final AuthenticatedUserDTO getUserSettingsDetail(@RequestAttribute("userId") long userId) {
         logger.debug("rest getUserSettingsDetail({})", userId);
 
-        UserDetailDTO user = userFacade.getUser(userId);
+        AuthenticatedUserDTO user = userFacade.getUser(userId);
         if (user != null) {
             return user;
         } else {

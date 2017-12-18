@@ -80,5 +80,12 @@ public class RecordDaoImpl implements RecordDao {
                 .setParameter("userId", userId)
                 .getResultList();
     }
+    
+    public long getNumberOfAllRecordsOfUser(long userId) {
+		return this.em.createQuery("SELECT COUNT(r) FROM Record r WHERE r.user.id=:userId",
+                Long.class)
+                .setParameter("userId", userId)
+                .getSingleResult();
+	}
 
 }

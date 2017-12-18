@@ -1,5 +1,6 @@
 package com.muni.fi.pa165project.rest.controllers;
 
+import com.muni.fi.pa165project.dto.AuthenticatedUserDTO;
 import com.muni.fi.pa165project.dto.LoginExistsRequestDTO;
 import com.muni.fi.pa165project.dto.LoginExistsResponseDTO;
 import com.muni.fi.pa165project.dto.TokenDTO;
@@ -35,8 +36,8 @@ public class AuthController {
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public final TokenDTO authenticate(@RequestBody UserCredentialsDTO credentials) {
         logger.debug("rest authenticate() username <{}>", credentials.getUsername());
-
-        UserDetailDTO user = this.userFacade.findByCredentials(credentials);
+        
+        AuthenticatedUserDTO user = this.userFacade.findByCredentials(credentials);
         
         if (user == null) {
             throw new UnprocessableEntityException();
@@ -59,7 +60,7 @@ public class AuthController {
             return response;
         }
 
-        UserDetailDTO user;
+        AuthenticatedUserDTO user;
         try {
             long userId = this.userFacade.createUser(userDTO);
             user = this.userFacade.getUser(userId);

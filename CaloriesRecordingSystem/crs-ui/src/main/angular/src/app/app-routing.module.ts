@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'trackingSettings', component: TrackingSettingsComponent, canActivate: [UserLoggedInGuard] },
   { path: 'login', component: LoginFormComponent, canActivate: [UserNotLoggedInGuard] },
   { path: 'register', component: RegisterFormComponent, canActivate: [UserNotLoggedInGuard] },
-  { path: 'users', component: UserListComponent, canActivate: [UserLoggedInGuard] },
+  { path: 'users', component: UserListComponent, canActivate: [UserIsAdminGuard] },
 
 
   //  catch all
