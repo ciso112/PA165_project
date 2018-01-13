@@ -25,6 +25,8 @@ public class UserDetailDTO {
     private String username;
 
     private String email;
+    
+    private long numberOfRecords;
 
     public Long getId() {
         return id;
@@ -128,4 +130,12 @@ public class UserDetailDTO {
         }
         return true;
     }
+
+	public long getNumberOfRecords() {
+		return numberOfRecords;
+	}
+
+	public void setNumberOfRecords(long numberOfRecords) {
+		this.numberOfRecords = numberOfRecords;
+	}
 }

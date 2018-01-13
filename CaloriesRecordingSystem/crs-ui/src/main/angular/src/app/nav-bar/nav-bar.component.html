@@ -44,6 +44,16 @@
       </li>
       <li class="nav-item">
         <a
+          *ngIf="this.userIsAdmin"
+          class="nav-link"
+          routerLink="users"
+          routerLinkActive="active"
+        >
+          Users
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
           *ngIf="this.userLoggedIn"
           class="nav-link"
           routerLink="settings"

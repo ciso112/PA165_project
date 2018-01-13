@@ -41,6 +41,9 @@ import { ActivityDetailStaticComponent } from './activity-detail-static/activity
 import {SettingsService} from './_services/settings.service';
 import {RecordFormComponent} from './record-form/record-form.component';
 import { TrackingSettingsComponent } from './tracking-settings/tracking-settings.component';
+import { UserListComponent } from './user-list/user-list.component';
+import {UserService} from "./_services/user.service";
+import { UserRecordsComponent } from './user-records/user-records.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +70,9 @@ import { TrackingSettingsComponent } from './tracking-settings/tracking-settings
     ActivityDetailFormComponent,
     ActivityDetailStaticComponent,
     RecordFormComponent,
-    TrackingSettingsComponent
+    TrackingSettingsComponent,
+    UserListComponent,
+    UserRecordsComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +93,7 @@ import { TrackingSettingsComponent } from './tracking-settings/tracking-settings
     UserNotLoggedInGuard,
     UserIsAdminGuard,
     LoginEventsService,
+    UserService,
   ],
   bootstrap: [AppComponent],
 })

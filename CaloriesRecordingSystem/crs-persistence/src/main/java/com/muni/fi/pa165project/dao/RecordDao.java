@@ -72,4 +72,11 @@ public interface RecordDao {
      */
     List<Record> getAllRecordsOfUserSortedFromNewest(long userId);
 
+    /**
+     * Returns number all records of user
+     *
+     * @param userId user id
+     * @return number of records
+     */
+    long getNumberOfAllRecordsOfUser(long userId);
 }

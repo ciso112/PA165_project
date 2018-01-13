@@ -106,5 +106,6 @@ public class UserDaoImpl implements UserDao {
                 .setParameter("username", username)
                 .getSingleResult() > 0;
     }
-
+    
+    
 }

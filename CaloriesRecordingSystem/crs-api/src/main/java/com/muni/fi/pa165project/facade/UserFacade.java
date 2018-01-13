@@ -1,5 +1,7 @@
 package com.muni.fi.pa165project.facade;
 
+import java.util.List;
+
 import com.muni.fi.pa165project.dto.*;
 
 /**
@@ -52,6 +54,12 @@ public interface UserFacade {
      * @param email users's email
      */
     UserDetailDTO getUser(String email);
+    
+    /**
+     * Get information about Users 
+     *
+    */
+    List<UserDetailDTO> getUsers();
 
     /**
      * Set tracking settings for user (goals)
@@ -82,4 +90,14 @@ public interface UserFacade {
      * @return 
      */
     LoginExistsResponseDTO loginExists(LoginExistsRequestDTO dto);
+    
+    /**
+     * Returns number of records of user
+     *
+     * @param long userId
+     * @return number of records
+     */
+    long getNumberOfAllRecordsOfUser(long userId);
+
+	List<RecordDetailDTO> getUsersRecords(long userId);
 }

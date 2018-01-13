@@ -68,5 +68,7 @@ public interface RecordService {
      * @return list of records
      */
     List<Record> getFilteredRecords(long userId, LocalDateTime from, LocalDateTime to);
+    
+    long getNumberOfAllRecordsOfUser(long userId);
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SettingsService} from '../_services/settings.service';
 import {TrackingSettings} from '../_classes/TrackingSettings';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tracking-settings',
@@ -13,6 +14,7 @@ export class TrackingSettingsComponent  implements OnInit {
 
   constructor(
     private userService: SettingsService,
+    private router: Router,
   ) {
     this.trackingSettings.weeklyCaloriesGoal = 0;
   }
@@ -26,7 +28,11 @@ export class TrackingSettingsComponent  implements OnInit {
   saveTrackingSettings() {
     this.userService
       .saveTrackingSettings(this.trackingSettings)
-      .subscribe(trackingSettings => this.trackingSettings = trackingSettings);
+      .subscribe(trackingSettings => {
+        this.trackingSettings = trackingSettings;
+        this.router.navigateByUrl('records');
+      });
+
   }
 
   ngOnInit() {

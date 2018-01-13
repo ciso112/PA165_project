@@ -169,7 +169,7 @@ public class RecordsController {
     @ApplyAuthorizeFilter(securityLevel = SecurityLevel.MEMBER)
     @RequestMapping(value = "/progress", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final int getGoalProgress(@RequestAttribute("userId") long userId) {
-        logger.debug("rest getRecord({})", userId);
+        logger.debug("rest getGoalProgress({})", userId);
         try {
             return trackingFacade.getWeekProgressOfBurnedCalories(userId);
         } catch (Exception ex) {

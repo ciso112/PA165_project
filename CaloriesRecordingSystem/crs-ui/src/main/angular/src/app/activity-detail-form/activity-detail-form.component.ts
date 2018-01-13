@@ -6,6 +6,7 @@ import {ActivityDetail} from '../_classes/ActivityDetail';
 import {BurnedCalories} from '../_classes/BurnedCalories';
 import {ICategory} from '../_interfaces/ICategory';
 import {CategoryService} from '../_services/category.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-activity-detail-form',
@@ -23,6 +24,7 @@ export class ActivityDetailFormComponent implements OnInit {
     private categoryService: CategoryService,
     private location: Location,
     private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -65,6 +67,7 @@ export class ActivityDetailFormComponent implements OnInit {
       .subscribe(activity => {
         const { category, ...other } = activity;
         this.activity = Object.assign({}, { ...other, category: category.id });
+        this.router.navigateByUrl('');
       });
   }
 

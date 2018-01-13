@@ -4,6 +4,7 @@ import com.muni.fi.pa165project.dto.*;
 import com.muni.fi.pa165project.entity.User;
 import com.muni.fi.pa165project.facade.UserFacade;
 import com.muni.fi.pa165project.service.MappingService;
+import com.muni.fi.pa165project.service.RecordService;
 import com.muni.fi.pa165project.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -31,6 +33,9 @@ public class UserFacadeImpl implements UserFacade {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private RecordService recordService;
 
     @Override
     public Long createUser(UserRegisterDTO userDto) {
@@ -96,6 +101,15 @@ public class UserFacadeImpl implements UserFacade {
         User user = this.userService.findByEmail(email);
         return mapper.map(user, UserDetailDTO.class);
     }
+    
+    @Override
+	public List<UserDetailDTO> getUsers() {
+		return  mapper.mapToList(userService.getUsers(),UserDetailDTO.class);
+	}
+    @Override
+    public final List<RecordDetailDTO> getUsersRecords(long userId) {
+    	return  mapper.mapToList(recordService.getAllRecordsOfUser(userId),RecordDetailDTO.class);
+    }
 
     @Override
     public TrackingSettingsUpdateDTO setTrackingSettings(TrackingSettingsDTO trackingSettings) {
@@ -147,6 +161,11 @@ public class UserFacadeImpl implements UserFacade {
         
         return response;
     }
+    
+    @Override
+	public long getNumberOfAllRecordsOfUser(long userId){
+		return recordService.getNumberOfAllRecordsOfUser(userId);
+	}
 
     private String getHashedPass(String pass, String salt){
         byte[] hashPass = pass.concat(salt).getBytes();

@@ -1,5 +1,7 @@
 package com.muni.fi.pa165project.service;
 
+import java.util.List;
+
 import com.muni.fi.pa165project.entity.User;
 
 /**
@@ -75,5 +77,11 @@ public interface UserService {
      * @return 
      */
     boolean userWithUsernameExists(String username);
+    
+    /**
+     *Returns a list of users
+     * @return list of users
+     */
+    List<User> getUsers();
     
 }

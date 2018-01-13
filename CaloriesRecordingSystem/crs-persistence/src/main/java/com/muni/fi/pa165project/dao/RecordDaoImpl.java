@@ -85,5 +85,13 @@ public class RecordDaoImpl implements RecordDao {
                 .sorted(Comparator.comparing(Record::getAtTime).reversed())
                 .collect(Collectors.toList());
     }
+    
+    @Override 	
+    public long getNumberOfAllRecordsOfUser(long userId) {
+		return this.em.createQuery("SELECT COUNT(r) FROM Record r WHERE r.user.id=:userId",
+                Long.class)
+                .setParameter("userId", userId)
+                .getSingleResult();
+	}
 
 }

@@ -1,9 +1,12 @@
 package com.muni.fi.pa165project.rest.controllers;
 
+import com.muni.fi.pa165project.dto.RecordDTO;
+import com.muni.fi.pa165project.dto.RecordDetailDTO;
 import com.muni.fi.pa165project.dto.TrackingSettingsDTO;
 import com.muni.fi.pa165project.dto.TrackingSettingsUpdateDTO;
 import com.muni.fi.pa165project.dto.UserDetailDTO;
 import com.muni.fi.pa165project.dto.UserUpdateDTO;
+import com.muni.fi.pa165project.facade.TrackingFacade;
 import com.muni.fi.pa165project.facade.UserFacade;
 import com.muni.fi.pa165project.rest.ApiUris;
 import com.muni.fi.pa165project.rest.exceptions.InternalException;
@@ -16,6 +19,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -34,6 +39,9 @@ public class UsersController {
 
     @Inject
     private UserFacade userFacade;
+    
+    @Inject
+    private TrackingFacade trackingFacade;    
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final UserDetailDTO getUser(@PathVariable("id") long userId) {
@@ -42,6 +50,29 @@ public class UsersController {
         UserDetailDTO user = userFacade.getUser(userId);
 
         return user;
+    }
+    
+    @ApplyAuthorizeFilter(securityLevel = SecurityLevel.ADMIN)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public final List<UserDetailDTO> getUsers() {
+
+        logger.debug("rest getUsers()");
+        List<UserDetailDTO> users = userFacade.getUsers();
+        for(UserDetailDTO user: users){
+        	 long numberOfRecords = userFacade.getNumberOfAllRecordsOfUser(user.getId());
+        	 user.setNumberOfRecords(numberOfRecords);
+        }
+        return users;
+    }
+    
+    @ApplyAuthorizeFilter(securityLevel = SecurityLevel.ADMIN)
+    @RequestMapping(value = "/{id}/records", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public final List<RecordDTO> getUserRecords(@PathVariable("id") long userId) {
+    	 logger.debug("rest getUserRecords({})", userId);
+    	List<RecordDTO> records = trackingFacade.getAllRecords(userId);
+    	return records;
+
+  
     }
 
     /**

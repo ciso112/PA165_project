@@ -57,10 +57,12 @@ public class SampleDataLoaderImpl implements SampleDataLoader {
 
     private void loadRecords() {
         long userId = userFacade.getUser("admin@fi.muni.cz").getId();
+        long user2Id = userFacade.getUser("rnovak@fi.muni.cz").getId();
         long activityId = acFacade.getAllActivities().get(0).getId();
         createRecord(userId, activityId, LocalDateTime.now(), 100, 50);
         createRecord(userId, activityId, LocalDateTime.now().minusHours(1), 200, 100);
         createRecord(userId, activityId, LocalDateTime.now().minusDays(2), 10, 10);
+        createRecord(user2Id, activityId, LocalDateTime.now().minusDays(4), 11, 04);
     }
 
     private Long createRecord(long userId, long activityId, LocalDateTime time, int distance, int duration) {
